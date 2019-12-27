@@ -32,3 +32,7 @@ class DataEntry(Base):
     data_entry_date_time = Column(DateTime, nullable=False)
     data_entry_key = Column(String(45))
     data_entry_value = Column(String(45))
+
+    @property
+    def js_datetime(self):
+        return self.data_entry_date_time.strftime("%Y-%m-%dT%H:%M:%S")

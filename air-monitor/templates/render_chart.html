@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1>Air Monitor</h1>
+
+    <div id="chart1" class="ct-chart" >Would you look at these numbers</div>
+<script>
+    var chart = new Chartist.Line('.ct-chart', {
+  series: [
+    {
+      name: 'series-1',
+      data: [
+          {% for data_point in data %}
+            {x: new Date("{{ data_point.js_datetime }}"), y: {{data_point.data_entry_value}}},
+          {% endfor %}
+      ]
+    }
+  ]
+}, {
+  axisX: {
+    type: Chartist.FixedScaleAxis,
+    
+    divisor: 5,
+    labelInterpolationFnc: function(value) {
+      return moment(value).format('h:mm:ss a');
+    }
+  }, 
+    axisY:{
+      low:0,
+    }
+});
+</script>
+
+
+{% endblock %}

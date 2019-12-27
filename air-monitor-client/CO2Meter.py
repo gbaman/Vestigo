@@ -1,3 +1,5 @@
+# From https://github.com/vfilimonov/co2meter
+
 import sys
 import fcntl
 import threading
