@@ -2,9 +2,8 @@ from CO2Meter import *
 import time
 import requests
 
-from config import node_key
+from config import node_key, base_url
 
-base_url = "http://10.0.12.70:5000"
 DELAY_TIME = 120
 
 sensor = CO2Meter("/dev/hidraw0")
