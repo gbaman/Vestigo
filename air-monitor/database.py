@@ -24,6 +24,8 @@ def add_data(node:Node, data_key, data_value):
     db_session.commit()
 
 
-def get_data_by_node_id_key(node_id, data_key) -> List[DataEntry]:
+def get_data_by_node_id_key(node_id, data_key, hours) -> List[DataEntry]:
+    #data = db_session.query(DataEntry).filter(DataEntry.node_id == node_id, DataEntry.data_entry_key == data_key, DataEntry.data_entry_date_time > datetime.datetime.now() - datetime.timedelta(hours = hours)).all()
     data = db_session.query(DataEntry).filter(DataEntry.node_id == node_id, DataEntry.data_entry_key == data_key).all()
+
     return data

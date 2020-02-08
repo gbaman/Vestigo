@@ -9,10 +9,12 @@ def home():
     return render_template("index.html")
 
 
+@air_routes.route("/render/<node_id>/<data_key>/<hours>")
 @air_routes.route("/render/<node_id>/<data_key>")
-def render_chart(node_id, data_key):
-    data = database.get_data_by_node_id_key(int(node_id), data_key)
-    return render_template("render_chart.html", data=data)
+def render_chart(node_id, data_key, hours=24):
+    data = database.get_data_by_node_id_key(int(node_id), data_key, int(hours))
+    template = render_template("render_chart.html", data=data, data_key=data_key)
+    return template
 
 
 @air_routes.route("/upload_data_live/<node_key>/<data_key>/<data_value>")
