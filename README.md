@@ -1,2 +1,2 @@
-# air-monitor
-An air quality monitor app for monitoring CO2 levels
+# Vestigo datalogger
+A basic datalogger platform, built on top of Python Flask
