@@ -2,7 +2,7 @@ import datetime
 import requests
 import logging
 
-import database
+from . import database
 
 
 class Vestigo():

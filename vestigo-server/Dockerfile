@@ -13,4 +13,4 @@ COPY . /app
 WORKDIR /app
 
 # Run Gunicorn with the log file
-CMD ["/usr/local/bin/gunicorn", "-w", "2", "-b", ":8020", "--log-file", "/var/air-monitor/air.log", "--capture-output", "main:app"]
+CMD ["/usr/local/bin/gunicorn", "-w", "2", "-b", ":8020", "--log-file", "/var/vestigo-server/vestigo.log", "--capture-output", "main:app"]

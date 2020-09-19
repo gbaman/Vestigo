@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>Air Monitor</h1>
+    <h1>{{ data_key[0]|upper }}{{ data_key[1:]}} data</h1>
 
     <div id="chart1" class="ct-chart">Below is the data for the {{ data_key }} sensor</div>
+    <a class="btn btn-primary" href="/export/{{ node_id }}/{{ data_key }}" role="button">Export CSV</a>
     <script>
         var chart = new Chartist.Line('.ct-chart', {
                 series: [
@@ -42,7 +43,7 @@
                     Chartist.plugins.tooltip({
                         transformTooltipTextFnc: function (tooltip) {
                             var xy = tooltip.split(",");
-                            return xy[1] + " ppm - " + moment(new Date(parseInt(xy[0]))).format('h:mm:ss a');
+                            return xy[1] + " - " + moment(new Date(parseInt(xy[0]))).format('h:mm:ss a');
                         }
                     })
                 ]

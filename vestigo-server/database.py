@@ -10,7 +10,7 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
     
-init_db()
+#init_db()
 
 
 def get_node_from_node_key(node_key):
