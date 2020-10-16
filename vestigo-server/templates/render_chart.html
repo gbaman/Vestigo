@@ -3,7 +3,9 @@
 {% block content %}
     <h1>{{ data_key[0]|upper }}{{ data_key[1:]}} data</h1>
 
-    <div id="chart1" class="ct-chart">Below is the data for the {{ data_key }} sensor</div>
+    <p>Below is the data for the {{ data_key }} sensor.</p>
+    <p>Right click to reset zoom.</p>
+    <div id="chart1" class="ct-chart"></div>
     <a class="btn btn-primary" href="/export/{{ node_id }}/{{ data_key }}" role="button">Export CSV</a>
     <script>
         var chart = new Chartist.Line('.ct-chart', {
@@ -24,7 +26,8 @@
             },
             {
                 axisX: {
-                    type: Chartist.FixedScaleAxis,
+                    type: Chartist.AutoScaleAxis,
+                    scaleMinSpace: 50,
 
                     divisor: 5,
                     labelInterpolationFnc: function (value) {
@@ -37,8 +40,9 @@
                 height: "500px",
                 showArea: true,
                 plugins: [
-                    Chartist.plugins.ctThreshold({
-                        threshold: 1000
+                    Chartist.plugins.zoom({
+                        resetOnRightMouseBtn: true,
+                        onZoom : function(chart, reset) { storeReset(reset); }
                     }),
                     Chartist.plugins.tooltip({
                         transformTooltipTextFnc: function (tooltip) {
